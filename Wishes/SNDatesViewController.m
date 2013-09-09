@@ -1,27 +1,27 @@
 //
-//  SNScheduleViewController.m
+//  SNDatesViewController.m
 //  Wishes
 //
-//  Created by Alexander Senin on 06.09.13.
+//  Created by Alexander Senin on 10.09.13.
 //  Copyright (c) 2013 Alexander Senin. All rights reserved.
 //
 
-#import "SNScheduleViewController.h"
-#import "SNOneWish.h"
-#import "SNWishes.h"
+#import "SNDatesViewController.h"
 #import "UNActionPicker.h"
 
-@interface SNScheduleViewController () <UIActionSheetDelegate>
+@interface SNDatesViewController ()<UIActionSheetDelegate>
 {
     NSInteger _indexSelectedDate;
 }
+
+
 @end
 
-@implementation SNScheduleViewController
+@implementation SNDatesViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithStyle:style];
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
     }
@@ -45,7 +45,7 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
     self.sortedSchedule = self.oneWish.schedule;
     
     
@@ -85,13 +85,13 @@
 }
 
 /*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
+ // Override to support conditional editing of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ // Return NO if you do not want the specified item to be editable.
+ return YES;
+ }
+ */
 
 
 // Override to support editing the table view.
@@ -107,28 +107,28 @@
         [self.oneWish updateLocalNotification];
         
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
+    }
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+    }
 }
 
 
 /*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
+ // Override to support rearranging the table view.
+ - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
+ {
+ }
+ */
 
 /*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
+ // Override to support conditional rearranging of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ // Return NO if you do not want the item to be re-orderable.
+ return YES;
+ }
+ */
 
 #pragma mark - Table view delegate
 
@@ -158,6 +158,10 @@
     [actionPicker setCancelButtonTitle:@"Отменить" color:[UIColor blackColor]];
     actionPicker.delegate = self;
     [actionPicker showInView:self.view];
+}
+
+- (IBAction)pushDeleteAction:(id)sender {
+    NSLog(@"pushDelete");
 }
 
 //что-то выбрали из пикера

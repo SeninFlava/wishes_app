@@ -10,7 +10,7 @@
 #import "SNOneWish.h"
 #import "SNWishes.h"
 
-@interface SNWishViewController : UIViewController
+@interface SNWishViewController : UIViewController <UITextViewDelegate>
 
 @property SNOneWish* currentWish;
 

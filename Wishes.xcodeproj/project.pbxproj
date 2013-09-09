@@ -22,7 +22,6 @@
 		5F237D5117D92A5500BC540E /* Data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5F237D5017D92A5500BC540E /* Data.plist */; };
 		5F237D5417D9385D00BC540E /* SNCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F237D5317D9385C00BC540E /* SNCell.m */; };
 		5F237D5717D9388100BC540E /* SNTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F237D5617D9388100BC540E /* SNTableViewController.m */; };
-		5F237D5A17D9408D00BC540E /* SNOneWishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F237D5917D9408C00BC540E /* SNOneWishViewController.m */; };
 		5F237D5D17DA09A600BC540E /* SNScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F237D5C17DA09A600BC540E /* SNScheduleViewController.m */; };
 		5F31802717DBFDCF0043B68D /* UNActionPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F31802617DBFDCF0043B68D /* UNActionPicker.m */; };
 		5FCFE56A17DD53FC00CDBEC0 /* sms-received1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 5FCFE56917DD53FC00CDBEC0 /* sms-received1.caf */; };
@@ -37,6 +36,7 @@
 		5FCFE58017DE25B000CDBEC0 /* SNWishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FCFE57F17DE25AF00CDBEC0 /* SNWishViewController.m */; };
 		5FCFE58417DE48A100CDBEC0 /* SNSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FCFE58317DE48A100CDBEC0 /* SNSettingViewController.m */; };
 		5FCFE58717DE4D5800CDBEC0 /* SNSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FCFE58617DE4D5800CDBEC0 /* SNSettingCell.m */; };
+		5FCFE58A17DE6A8300CDBEC0 /* SNDatesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FCFE58917DE6A8300CDBEC0 /* SNDatesViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,8 +63,6 @@
 		5F237D5317D9385C00BC540E /* SNCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNCell.m; sourceTree = "<group>"; };
 		5F237D5517D9388100BC540E /* SNTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNTableViewController.h; sourceTree = "<group>"; };
 		5F237D5617D9388100BC540E /* SNTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNTableViewController.m; sourceTree = "<group>"; };
-		5F237D5817D9408C00BC540E /* SNOneWishViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNOneWishViewController.h; sourceTree = "<group>"; };
-		5F237D5917D9408C00BC540E /* SNOneWishViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNOneWishViewController.m; sourceTree = "<group>"; };
 		5F237D5B17DA09A600BC540E /* SNScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNScheduleViewController.h; sourceTree = "<group>"; };
 		5F237D5C17DA09A600BC540E /* SNScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNScheduleViewController.m; sourceTree = "<group>"; };
 		5F31802517DBFDCE0043B68D /* UNActionPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UNActionPicker.h; sourceTree = "<group>"; };
@@ -85,6 +83,8 @@
 		5FCFE58317DE48A100CDBEC0 /* SNSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNSettingViewController.m; sourceTree = "<group>"; };
 		5FCFE58517DE4D5800CDBEC0 /* SNSettingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNSettingCell.h; sourceTree = "<group>"; };
 		5FCFE58617DE4D5800CDBEC0 /* SNSettingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNSettingCell.m; sourceTree = "<group>"; };
+		5FCFE58817DE6A8300CDBEC0 /* SNDatesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNDatesViewController.h; sourceTree = "<group>"; };
+		5FCFE58917DE6A8300CDBEC0 /* SNDatesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNDatesViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,7 +188,6 @@
 		5FCFE57D17DDFF2400CDBEC0 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				5FCFE58117DE25B600CDBEC0 /* old */,
 				5F31802517DBFDCE0043B68D /* UNActionPicker.h */,
 				5F31802617DBFDCF0043B68D /* UNActionPicker.m */,
 				5F237D5217D9385C00BC540E /* SNCell.h */,
@@ -197,25 +196,26 @@
 				5F237D5617D9388100BC540E /* SNTableViewController.m */,
 				5FCFE57E17DE25AF00CDBEC0 /* SNWishViewController.h */,
 				5FCFE57F17DE25AF00CDBEC0 /* SNWishViewController.m */,
-				5FCFE58217DE48A100CDBEC0 /* SNSettingViewController.h */,
-				5FCFE58317DE48A100CDBEC0 /* SNSettingViewController.m */,
-				5FCFE58517DE4D5800CDBEC0 /* SNSettingCell.h */,
-				5FCFE58617DE4D5800CDBEC0 /* SNSettingCell.m */,
+				5FCFE58117DE25B600CDBEC0 /* Settings */,
 			);
 			name = UI;
 			sourceTree = "<group>";
 		};
-		5FCFE58117DE25B600CDBEC0 /* old */ = {
+		5FCFE58117DE25B600CDBEC0 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				5F237D5817D9408C00BC540E /* SNOneWishViewController.h */,
-				5F237D5917D9408C00BC540E /* SNOneWishViewController.m */,
+				5FCFE58517DE4D5800CDBEC0 /* SNSettingCell.h */,
+				5FCFE58617DE4D5800CDBEC0 /* SNSettingCell.m */,
+				5FCFE58217DE48A100CDBEC0 /* SNSettingViewController.h */,
+				5FCFE58317DE48A100CDBEC0 /* SNSettingViewController.m */,
+				5FCFE58817DE6A8300CDBEC0 /* SNDatesViewController.h */,
+				5FCFE58917DE6A8300CDBEC0 /* SNDatesViewController.m */,
 				5F237D5B17DA09A600BC540E /* SNScheduleViewController.h */,
 				5F237D5C17DA09A600BC540E /* SNScheduleViewController.m */,
 				5FCFE56B17DD553800CDBEC0 /* SNSoundViewController.h */,
 				5FCFE56C17DD553800CDBEC0 /* SNSoundViewController.m */,
 			);
-			name = old;
+			name = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -298,13 +298,13 @@
 				5F237D4F17D9203D00BC540E /* SNWishes.m in Sources */,
 				5F237D5417D9385D00BC540E /* SNCell.m in Sources */,
 				5F237D5717D9388100BC540E /* SNTableViewController.m in Sources */,
-				5F237D5A17D9408D00BC540E /* SNOneWishViewController.m in Sources */,
 				5F237D5D17DA09A600BC540E /* SNScheduleViewController.m in Sources */,
 				5F31802717DBFDCF0043B68D /* UNActionPicker.m in Sources */,
 				5FCFE56D17DD553800CDBEC0 /* SNSoundViewController.m in Sources */,
 				5FCFE58017DE25B000CDBEC0 /* SNWishViewController.m in Sources */,
 				5FCFE58417DE48A100CDBEC0 /* SNSettingViewController.m in Sources */,
 				5FCFE58717DE4D5800CDBEC0 /* SNSettingCell.m in Sources */,
+				5FCFE58A17DE6A8300CDBEC0 /* SNDatesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

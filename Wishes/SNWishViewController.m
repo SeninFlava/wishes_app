@@ -29,21 +29,52 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    //подписываемся на клаву, добавляем кнопку готово
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow) name:UIKeyboardDidShowNotification object:nil];
+    //подписываемся на клаву, добавляем кнопку готово, изменияем размер текст вью
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
+    
+    //подписываемся на момент когда клава будет изчезать
+    //показываем кнопку настройки, если есть текст
+    //изменяем рвзмеры текствью
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    
+    
+    
 }
 
 //метод вызывается, когда клава появилась
--(void) keyboardDidShow
+-(void) keyboardDidShow:(NSNotification*)note
 {
-    [self.navigationItem setRightBarButtonItem:self.buttonReady animated:YES];
+    //показываем кнопку готово
+    [self.navigationItem setRightBarButtonItem:self.buttonReady animated:NO];
+    
+    //меняем размер текстВью чтобы клава не перекрывала его
+    NSDictionary *userInfo = [note userInfo];
+    NSValue *aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+    CGRect keyboardRect = [aValue CGRectValue];
+    keyboardRect = [self.view convertRect:keyboardRect fromView:nil];
+    CGFloat keyboardTop = keyboardRect.origin.y;
+    CGRect newTextViewFrame = self.view.bounds;
+    newTextViewFrame.size.height = keyboardTop - self.view.bounds.origin.y;
+    self.textView.frame = newTextViewFrame;
 }
 
-//убираем клаву, скрываем кнопку
+//метод вызывается когда клава начинает убираться с экрана
+-(void) keyboardWillHide:(NSNotification*)note
+{
+    [self.navigationItem setRightBarButtonItem:nil];
+    //если что-то написанно, то показываем настройки
+    //if (self.textView.text.length>0)
+    [self.navigationItem setRightBarButtonItem:self.buttonSettings animated:NO];
+    
+    //меняем размер текствью на первоначальный
+    self.textView.frame = self.view.bounds;
+    
+}
+
+
+//убираем клаву
 - (IBAction)pushReadyAction:(id)sender {
     [self.textView resignFirstResponder];
-    //[self.navigationItem setRightBarButtonItem:nil animated:YES];
-    [self.navigationItem setRightBarButtonItem:self.buttonSettings animated:NO];
 }
 
 
@@ -52,6 +83,9 @@
 {
     self.textView.text = self.currentWish.text;
     [self.navigationItem setTitle:self.currentWish.title];
+    
+    //показываем кнопку настройки если введен какой-нибудь текст
+//    if (self.textView.text.length!=0)
     [self.navigationItem setRightBarButtonItem:self.buttonSettings animated:NO];
 }
 
@@ -87,6 +121,16 @@
 }
 
 
+//вызывается каждый раз при редактировании
+- (void)textViewDidChange:(UITextView *)textView
+{
+    [self.navigationItem setTitle:[self trimTextToTitle]];
+//    NSLog(@"text=%@",textView.text);
+}
+
+
+
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -111,9 +155,17 @@
 }
 
 
+
 //вызываем метод перехода в настройки
 - (IBAction)pushSettingsAction:(id)sender {
-    [self performSegueWithIdentifier:@"goToSettingOneWish" sender:self];
+    //показываем настройки если что-то введено
+    if (self.textView.text.length!=0)
+        [self performSegueWithIdentifier:@"goToSettingOneWish" sender:self];
+    else
+    {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Введите пожелание" message:nil delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+    }
 }
 
 //отправляем текущее пожелание в настройки

@@ -78,76 +78,6 @@
             </objects>
             <point key="canvasLocation" x="169" y="-292"/>
         </scene>
-        <!--One Wish View Controller - Пожелание-->
-        <scene sceneID="4Fo-CS-HDr">
-            <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="uhI-Ie-7SF" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <barButtonItem title="Готово" id="0of-Tp-5N7">
-                    <connections>
-                        <action selector="barReadyAction:" destination="2ko-4g-w2Y" id="hCa-uD-HHV"/>
-                    </connections>
-                </barButtonItem>
-                <viewController id="2ko-4g-w2Y" customClass="SNOneWishViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="o7F-P5-e8k">
-                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Пожелание" minimumFontSize="5" id="Vy0-aV-3mg">
-                                <rect key="frame" x="20" y="102" width="280" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="jgC-H5-FkD">
-                                <rect key="frame" x="20" y="140" width="280" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Звук">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="pushSoundAction:" destination="2ko-4g-w2Y" eventType="touchUpInside" id="mcu-ta-pIO"/>
-                                    <segue destination="XT1-Pk-c2c" kind="push" identifier="goToSounds" id="n9u-dS-ZDp"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ubJ-92-Q3c">
-                                <rect key="frame" x="20" y="28" width="280" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Расписание">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="uff-wz-uZO" kind="push" identifier="goToDates" id="nct-Zx-rKT"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Пожелание" id="XfI-iH-1h9">
-                        <barButtonItem key="rightBarButtonItem" systemItem="trash" id="Wf6-33-A6Y">
-                            <connections>
-                                <action selector="pushDeleteAction:" destination="2ko-4g-w2Y" id="Djb-zZ-Xea"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="barReady" destination="0of-Tp-5N7" id="5LU-qg-43g"/>
-                        <outlet property="labelTextWish" destination="Vy0-aV-3mg" id="cY3-hN-fie"/>
-                        <outlet property="pushSoundButton" destination="jgC-H5-FkD" id="Bce-NR-S2N"/>
-                    </connections>
-                </viewController>
-            </objects>
-            <point key="canvasLocation" x="617" y="-1154"/>
-        </scene>
         <!--Wish View Controller - Четыре неограниченные-->
         <scene sceneID="eQM-G4-oAk">
             <objects>
@@ -163,6 +93,9 @@
                                 <string key="text">Четыре неограниченные. Пусть у всех существ будет счастье и причина счастья. Пусть все существа будут свободны от страданий и причин страданий. Пусть они всегда испытывают счастье полностью свободное от страданий.Пусть они пребудут в великой равностности, вне привязанности к одним и неприязник другим.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="P7d-HJ-gKu" id="C2c-eb-uj9"/>
+                                </connections>
                             </textView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="NLB-Wt-jbr">
                                 <rect key="frame" x="0.0" y="460" width="320" height="44"/>
@@ -271,19 +204,77 @@
                     <navigationItem key="navigationItem" title="Настройка" id="zUF-KE-ftk"/>
                     <connections>
                         <segue destination="XT1-Pk-c2c" kind="push" identifier="goToSounds" id="JFc-tI-52R"/>
-                        <segue destination="uff-wz-uZO" kind="push" identifier="goToDates" id="AUK-eH-KRW"/>
+                        <segue destination="uff-wz-uZO" kind="push" identifier="goToDates_" id="AUK-eH-KRW"/>
+                        <segue destination="W1M-OT-bDa" kind="push" identifier="goToDates" id="JV3-qt-rF4"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eMa-66-ZF3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1237" y="-292"/>
         </scene>
+        <!--Dates View Controller - Расписание-->
+        <scene sceneID="bz1-do-E90">
+            <objects>
+                <viewController id="W1M-OT-bDa" customClass="SNDatesViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="s0c-ic-rDE">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="JRd-Do-aD6">
+                                <rect key="frame" x="0.0" y="460" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem title="Удалить" id="lJy-Zp-Cua">
+                                        <connections>
+                                            <action selector="pushDeleteAction:" destination="W1M-OT-bDa" id="l7O-2t-n9G"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="YsP-t1-pq4">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="Cell" id="Bxi-HX-Hhz">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="W1M-OT-bDa" id="L0f-S3-OkE"/>
+                                    <outlet property="delegate" destination="W1M-OT-bDa" id="hB7-AM-nS6"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Расписание" id="Yuh-id-AFK">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="6M9-fg-PE5">
+                            <connections>
+                                <action selector="addTimeAction:" destination="W1M-OT-bDa" id="0uD-2V-8or"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="YsP-t1-pq4" id="g9k-R8-h2v"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Klf-hk-lUc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1873" y="-459"/>
+        </scene>
         <!--Sound View Controller - Выберите звук-->
         <scene sceneID="0Qf-BI-YVC">
             <objects>
                 <tableViewController id="XT1-Pk-c2c" customClass="SNSoundViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="f3Z-AH-tSp">
-                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -306,15 +297,15 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cfA-Oz-0Nx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1965" y="93"/>
+            <point key="canvasLocation" x="1837" y="349"/>
         </scene>
         <!--Schedule View Controller - Расписание-->
         <scene sceneID="DEf-pI-ITr">
             <objects>
                 <tableViewController id="uff-wz-uZO" customClass="SNScheduleViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="50" sectionHeaderHeight="22" sectionFooterHeight="22" id="S0O-8a-1z4">
-                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="3qh-PE-jfx" rowHeight="50" style="IBUITableViewCellStyleDefault" id="CGz-cP-amu">
@@ -350,8 +341,15 @@
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2My-Nl-3g8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="sCV-ny-DQ8">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                    <items>
+                        <barButtonItem title="Item" id="m0n-lV-i9Y"/>
+                    </items>
+                </toolbar>
             </objects>
-            <point key="canvasLocation" x="1965" y="-646"/>
+            <point key="canvasLocation" x="1757" y="-1264"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="iNF-wP-5ca">
@@ -379,15 +377,12 @@
                 <relationship kind="outlet" name="switchProperty" candidateClass="UISwitch"/>
             </relationships>
         </class>
-        <class className="SNOneWishViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SNOneWishViewController.h"/>
+        <class className="SNDatesViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SNDatesViewController.h"/>
             <relationships>
-                <relationship kind="action" name="barReadyAction:"/>
+                <relationship kind="action" name="addTimeAction:"/>
                 <relationship kind="action" name="pushDeleteAction:"/>
-                <relationship kind="action" name="pushSoundAction:"/>
-                <relationship kind="outlet" name="barReady" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="labelTextWish" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="pushSoundButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
             </relationships>
         </class>
         <class className="SNScheduleViewController" superclassName="UITableViewController">
@@ -436,7 +431,5 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="jQh-7Z-KYv"/>
-        <segue reference="nct-Zx-rKT"/>
-        <segue reference="n9u-dS-ZDp"/>
     </inferredMetricsTieBreakers>
 </document>
