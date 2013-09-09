@@ -17,7 +17,23 @@
 		5F237D3C17D8D26200BC540E /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F237D3B17D8D26200BC540E /* Default@2x.png */; };
 		5F237D3E17D8D26200BC540E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F237D3D17D8D26200BC540E /* Default-568h@2x.png */; };
 		5F237D4117D8D26200BC540E /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F237D3F17D8D26200BC540E /* MainStoryboard.storyboard */; };
-		5F237D4417D8D26200BC540E /* SNViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F237D4317D8D26200BC540E /* SNViewController.m */; };
+		5F237D4C17D9202B00BC540E /* SNOneWish.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F237D4B17D9202B00BC540E /* SNOneWish.m */; };
+		5F237D4F17D9203D00BC540E /* SNWishes.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F237D4E17D9203D00BC540E /* SNWishes.m */; };
+		5F237D5117D92A5500BC540E /* Data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5F237D5017D92A5500BC540E /* Data.plist */; };
+		5F237D5417D9385D00BC540E /* SNCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F237D5317D9385C00BC540E /* SNCell.m */; };
+		5F237D5717D9388100BC540E /* SNTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F237D5617D9388100BC540E /* SNTableViewController.m */; };
+		5F237D5A17D9408D00BC540E /* SNOneWishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F237D5917D9408C00BC540E /* SNOneWishViewController.m */; };
+		5F237D5D17DA09A600BC540E /* SNScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F237D5C17DA09A600BC540E /* SNScheduleViewController.m */; };
+		5F31802717DBFDCF0043B68D /* UNActionPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F31802617DBFDCF0043B68D /* UNActionPicker.m */; };
+		5FCFE56A17DD53FC00CDBEC0 /* sms-received1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 5FCFE56917DD53FC00CDBEC0 /* sms-received1.caf */; };
+		5FCFE56D17DD553800CDBEC0 /* SNSoundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FCFE56C17DD553800CDBEC0 /* SNSoundViewController.m */; };
+		5FCFE56F17DD59AA00CDBEC0 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FCFE56E17DD59AA00CDBEC0 /* AudioToolbox.framework */; };
+		5FCFE57117DD5A1600CDBEC0 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FCFE57017DD5A1600CDBEC0 /* AVFoundation.framework */; };
+		5FCFE57317DD712800CDBEC0 /* empty.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 5FCFE57217DD712800CDBEC0 /* empty.mp4 */; };
+		5FCFE57717DD726F00CDBEC0 /* Nosound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5FCFE57417DD726F00CDBEC0 /* Nosound.mp3 */; };
+		5FCFE57817DD726F00CDBEC0 /* 2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5FCFE57517DD726F00CDBEC0 /* 2.mp3 */; };
+		5FCFE57917DD726F00CDBEC0 /* 3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5FCFE57617DD726F00CDBEC0 /* 3.mp3 */; };
+		5FCFE57B17DD74BB00CDBEC0 /* Woman in Resources */ = {isa = PBXBuildFile; fileRef = 5FCFE57A17DD74BB00CDBEC0 /* Woman */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,8 +51,31 @@
 		5F237D3B17D8D26200BC540E /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		5F237D3D17D8D26200BC540E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		5F237D4017D8D26200BC540E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		5F237D4217D8D26200BC540E /* SNViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SNViewController.h; sourceTree = "<group>"; };
-		5F237D4317D8D26200BC540E /* SNViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SNViewController.m; sourceTree = "<group>"; };
+		5F237D4A17D9202B00BC540E /* SNOneWish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNOneWish.h; sourceTree = "<group>"; };
+		5F237D4B17D9202B00BC540E /* SNOneWish.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNOneWish.m; sourceTree = "<group>"; };
+		5F237D4D17D9203D00BC540E /* SNWishes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNWishes.h; sourceTree = "<group>"; };
+		5F237D4E17D9203D00BC540E /* SNWishes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNWishes.m; sourceTree = "<group>"; };
+		5F237D5017D92A5500BC540E /* Data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Data.plist; sourceTree = "<group>"; };
+		5F237D5217D9385C00BC540E /* SNCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNCell.h; sourceTree = "<group>"; };
+		5F237D5317D9385C00BC540E /* SNCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNCell.m; sourceTree = "<group>"; };
+		5F237D5517D9388100BC540E /* SNTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNTableViewController.h; sourceTree = "<group>"; };
+		5F237D5617D9388100BC540E /* SNTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNTableViewController.m; sourceTree = "<group>"; };
+		5F237D5817D9408C00BC540E /* SNOneWishViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNOneWishViewController.h; sourceTree = "<group>"; };
+		5F237D5917D9408C00BC540E /* SNOneWishViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNOneWishViewController.m; sourceTree = "<group>"; };
+		5F237D5B17DA09A600BC540E /* SNScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNScheduleViewController.h; sourceTree = "<group>"; };
+		5F237D5C17DA09A600BC540E /* SNScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNScheduleViewController.m; sourceTree = "<group>"; };
+		5F31802517DBFDCE0043B68D /* UNActionPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UNActionPicker.h; sourceTree = "<group>"; };
+		5F31802617DBFDCF0043B68D /* UNActionPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UNActionPicker.m; sourceTree = "<group>"; };
+		5FCFE56917DD53FC00CDBEC0 /* sms-received1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sms-received1.caf"; sourceTree = "<group>"; };
+		5FCFE56B17DD553800CDBEC0 /* SNSoundViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNSoundViewController.h; sourceTree = "<group>"; };
+		5FCFE56C17DD553800CDBEC0 /* SNSoundViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNSoundViewController.m; sourceTree = "<group>"; };
+		5FCFE56E17DD59AA00CDBEC0 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		5FCFE57017DD5A1600CDBEC0 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		5FCFE57217DD712800CDBEC0 /* empty.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = empty.mp4; sourceTree = "<group>"; };
+		5FCFE57417DD726F00CDBEC0 /* Nosound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Nosound.mp3; sourceTree = "<group>"; };
+		5FCFE57517DD726F00CDBEC0 /* 2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 2.mp3; sourceTree = "<group>"; };
+		5FCFE57617DD726F00CDBEC0 /* 3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 3.mp3; sourceTree = "<group>"; };
+		5FCFE57A17DD74BB00CDBEC0 /* Woman */ = {isa = PBXFileReference; lastKnownFileType = file; path = Woman; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +83,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5FCFE57117DD5A1600CDBEC0 /* AVFoundation.framework in Frameworks */,
+				5FCFE56F17DD59AA00CDBEC0 /* AudioToolbox.framework in Frameworks */,
 				5F237D2817D8D26200BC540E /* UIKit.framework in Frameworks */,
 				5F237D2A17D8D26200BC540E /* Foundation.framework in Frameworks */,
 				5F237D2C17D8D26200BC540E /* CoreGraphics.framework in Frameworks */,
@@ -73,6 +114,8 @@
 		5F237D2617D8D26200BC540E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5FCFE57017DD5A1600CDBEC0 /* AVFoundation.framework */,
+				5FCFE56E17DD59AA00CDBEC0 /* AudioToolbox.framework */,
 				5F237D2717D8D26200BC540E /* UIKit.framework */,
 				5F237D2917D8D26200BC540E /* Foundation.framework */,
 				5F237D2B17D8D26200BC540E /* CoreGraphics.framework */,
@@ -83,11 +126,27 @@
 		5F237D2D17D8D26200BC540E /* Wishes */ = {
 			isa = PBXGroup;
 			children = (
+				5F237D3F17D8D26200BC540E /* MainStoryboard.storyboard */,
+				5F31802517DBFDCE0043B68D /* UNActionPicker.h */,
+				5F31802617DBFDCF0043B68D /* UNActionPicker.m */,
+				5F237D4A17D9202B00BC540E /* SNOneWish.h */,
+				5F237D4B17D9202B00BC540E /* SNOneWish.m */,
+				5F237D4D17D9203D00BC540E /* SNWishes.h */,
+				5F237D4E17D9203D00BC540E /* SNWishes.m */,
 				5F237D3617D8D26200BC540E /* SNAppDelegate.h */,
 				5F237D3717D8D26200BC540E /* SNAppDelegate.m */,
-				5F237D3F17D8D26200BC540E /* MainStoryboard.storyboard */,
-				5F237D4217D8D26200BC540E /* SNViewController.h */,
-				5F237D4317D8D26200BC540E /* SNViewController.m */,
+				5F237D5217D9385C00BC540E /* SNCell.h */,
+				5F237D5317D9385C00BC540E /* SNCell.m */,
+				5F237D5517D9388100BC540E /* SNTableViewController.h */,
+				5F237D5617D9388100BC540E /* SNTableViewController.m */,
+				5F237D5817D9408C00BC540E /* SNOneWishViewController.h */,
+				5F237D5917D9408C00BC540E /* SNOneWishViewController.m */,
+				5F237D5B17DA09A600BC540E /* SNScheduleViewController.h */,
+				5F237D5C17DA09A600BC540E /* SNScheduleViewController.m */,
+				5FCFE56B17DD553800CDBEC0 /* SNSoundViewController.h */,
+				5FCFE56C17DD553800CDBEC0 /* SNSoundViewController.m */,
+				5F237D5017D92A5500BC540E /* Data.plist */,
+				5FCFE56817DD53FC00CDBEC0 /* sounds */,
 				5F237D2E17D8D26200BC540E /* Supporting Files */,
 			);
 			path = Wishes;
@@ -105,6 +164,19 @@
 				5F237D3D17D8D26200BC540E /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5FCFE56817DD53FC00CDBEC0 /* sounds */ = {
+			isa = PBXGroup;
+			children = (
+				5FCFE57A17DD74BB00CDBEC0 /* Woman */,
+				5FCFE57417DD726F00CDBEC0 /* Nosound.mp3 */,
+				5FCFE57517DD726F00CDBEC0 /* 2.mp3 */,
+				5FCFE57617DD726F00CDBEC0 /* 3.mp3 */,
+				5FCFE57217DD712800CDBEC0 /* empty.mp4 */,
+				5FCFE56917DD53FC00CDBEC0 /* sms-received1.caf */,
+			);
+			path = sounds;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -164,6 +236,13 @@
 				5F237D3C17D8D26200BC540E /* Default@2x.png in Resources */,
 				5F237D3E17D8D26200BC540E /* Default-568h@2x.png in Resources */,
 				5F237D4117D8D26200BC540E /* MainStoryboard.storyboard in Resources */,
+				5F237D5117D92A5500BC540E /* Data.plist in Resources */,
+				5FCFE56A17DD53FC00CDBEC0 /* sms-received1.caf in Resources */,
+				5FCFE57317DD712800CDBEC0 /* empty.mp4 in Resources */,
+				5FCFE57717DD726F00CDBEC0 /* Nosound.mp3 in Resources */,
+				5FCFE57817DD726F00CDBEC0 /* 2.mp3 in Resources */,
+				5FCFE57917DD726F00CDBEC0 /* 3.mp3 in Resources */,
+				5FCFE57B17DD74BB00CDBEC0 /* Woman in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,7 +255,14 @@
 			files = (
 				5F237D3417D8D26200BC540E /* main.m in Sources */,
 				5F237D3817D8D26200BC540E /* SNAppDelegate.m in Sources */,
-				5F237D4417D8D26200BC540E /* SNViewController.m in Sources */,
+				5F237D4C17D9202B00BC540E /* SNOneWish.m in Sources */,
+				5F237D4F17D9203D00BC540E /* SNWishes.m in Sources */,
+				5F237D5417D9385D00BC540E /* SNCell.m in Sources */,
+				5F237D5717D9388100BC540E /* SNTableViewController.m in Sources */,
+				5F237D5A17D9408D00BC540E /* SNOneWishViewController.m in Sources */,
+				5F237D5D17DA09A600BC540E /* SNScheduleViewController.m in Sources */,
+				5F31802717DBFDCF0043B68D /* UNActionPicker.m in Sources */,
+				5FCFE56D17DD553800CDBEC0 /* SNSoundViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,6 +385,7 @@
 				5F237D4917D8D26200BC540E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
