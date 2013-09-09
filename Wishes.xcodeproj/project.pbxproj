@@ -34,6 +34,9 @@
 		5FCFE57817DD726F00CDBEC0 /* 2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5FCFE57517DD726F00CDBEC0 /* 2.mp3 */; };
 		5FCFE57917DD726F00CDBEC0 /* 3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5FCFE57617DD726F00CDBEC0 /* 3.mp3 */; };
 		5FCFE57B17DD74BB00CDBEC0 /* Woman in Resources */ = {isa = PBXBuildFile; fileRef = 5FCFE57A17DD74BB00CDBEC0 /* Woman */; };
+		5FCFE58017DE25B000CDBEC0 /* SNWishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FCFE57F17DE25AF00CDBEC0 /* SNWishViewController.m */; };
+		5FCFE58417DE48A100CDBEC0 /* SNSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FCFE58317DE48A100CDBEC0 /* SNSettingViewController.m */; };
+		5FCFE58717DE4D5800CDBEC0 /* SNSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FCFE58617DE4D5800CDBEC0 /* SNSettingCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +79,12 @@
 		5FCFE57517DD726F00CDBEC0 /* 2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 2.mp3; sourceTree = "<group>"; };
 		5FCFE57617DD726F00CDBEC0 /* 3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 3.mp3; sourceTree = "<group>"; };
 		5FCFE57A17DD74BB00CDBEC0 /* Woman */ = {isa = PBXFileReference; lastKnownFileType = file; path = Woman; sourceTree = "<group>"; };
+		5FCFE57E17DE25AF00CDBEC0 /* SNWishViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNWishViewController.h; sourceTree = "<group>"; };
+		5FCFE57F17DE25AF00CDBEC0 /* SNWishViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNWishViewController.m; sourceTree = "<group>"; };
+		5FCFE58217DE48A100CDBEC0 /* SNSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNSettingViewController.h; sourceTree = "<group>"; };
+		5FCFE58317DE48A100CDBEC0 /* SNSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNSettingViewController.m; sourceTree = "<group>"; };
+		5FCFE58517DE4D5800CDBEC0 /* SNSettingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNSettingCell.h; sourceTree = "<group>"; };
+		5FCFE58617DE4D5800CDBEC0 /* SNSettingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNSettingCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,12 +188,26 @@
 		5FCFE57D17DDFF2400CDBEC0 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				5FCFE58117DE25B600CDBEC0 /* old */,
 				5F31802517DBFDCE0043B68D /* UNActionPicker.h */,
 				5F31802617DBFDCF0043B68D /* UNActionPicker.m */,
 				5F237D5217D9385C00BC540E /* SNCell.h */,
 				5F237D5317D9385C00BC540E /* SNCell.m */,
 				5F237D5517D9388100BC540E /* SNTableViewController.h */,
 				5F237D5617D9388100BC540E /* SNTableViewController.m */,
+				5FCFE57E17DE25AF00CDBEC0 /* SNWishViewController.h */,
+				5FCFE57F17DE25AF00CDBEC0 /* SNWishViewController.m */,
+				5FCFE58217DE48A100CDBEC0 /* SNSettingViewController.h */,
+				5FCFE58317DE48A100CDBEC0 /* SNSettingViewController.m */,
+				5FCFE58517DE4D5800CDBEC0 /* SNSettingCell.h */,
+				5FCFE58617DE4D5800CDBEC0 /* SNSettingCell.m */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		5FCFE58117DE25B600CDBEC0 /* old */ = {
+			isa = PBXGroup;
+			children = (
 				5F237D5817D9408C00BC540E /* SNOneWishViewController.h */,
 				5F237D5917D9408C00BC540E /* SNOneWishViewController.m */,
 				5F237D5B17DA09A600BC540E /* SNScheduleViewController.h */,
@@ -192,7 +215,7 @@
 				5FCFE56B17DD553800CDBEC0 /* SNSoundViewController.h */,
 				5FCFE56C17DD553800CDBEC0 /* SNSoundViewController.m */,
 			);
-			name = UI;
+			name = old;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -279,6 +302,9 @@
 				5F237D5D17DA09A600BC540E /* SNScheduleViewController.m in Sources */,
 				5F31802717DBFDCF0043B68D /* UNActionPicker.m in Sources */,
 				5FCFE56D17DD553800CDBEC0 /* SNSoundViewController.m in Sources */,
+				5FCFE58017DE25B000CDBEC0 /* SNWishViewController.m in Sources */,
+				5FCFE58417DE48A100CDBEC0 /* SNSettingViewController.m in Sources */,
+				5FCFE58717DE4D5800CDBEC0 /* SNSettingCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

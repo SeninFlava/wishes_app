@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
-        <!--Table View Controller - Все пожелания-->
+        <!--Table View Controller - Пожелания-->
         <scene sceneID="WuL-if-Rov">
             <objects>
                 <tableViewController id="Yhh-Fj-112" customClass="SNTableViewController" sceneMemberID="viewController">
@@ -48,7 +48,7 @@
                                     <outlet property="labelDataTime" destination="yBn-q9-Pf9" id="utK-hn-Po5"/>
                                     <outlet property="labelTextWish" destination="ESC-Dg-zRy" id="VLx-y0-1cZ"/>
                                     <outlet property="switchProperty" destination="Fb8-du-J6T" id="ELz-BN-eBS"/>
-                                    <segue destination="2ko-4g-w2Y" kind="push" identifier="goToOneWish" id="8U6-cE-RHh"/>
+                                    <segue destination="P7d-HJ-gKu" kind="push" identifier="goToOneWish" id="jQh-7Z-KYv"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -57,7 +57,7 @@
                             <outlet property="delegate" destination="Yhh-Fj-112" id="6do-WJ-44g"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Все пожелания" id="Svo-n7-4lf">
+                    <navigationItem key="navigationItem" title="Пожелания" id="Svo-n7-4lf">
                         <barButtonItem key="leftBarButtonItem" title="Log" id="0pX-4b-imI">
                             <connections>
                                 <action selector="showAll:" destination="Yhh-Fj-112" id="uRJ-mP-46o"/>
@@ -66,7 +66,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Pko-Oc-OM2">
                             <connections>
                                 <action selector="addWishAction:" destination="Yhh-Fj-112" id="6do-pB-Jm9"/>
-                                <segue destination="2ko-4g-w2Y" kind="push" identifier="goToNewWish" id="jiM-Va-0xL"/>
+                                <segue destination="P7d-HJ-gKu" kind="push" identifier="goToNewWish" id="gjR-nc-CHw"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -81,9 +81,15 @@
         <!--One Wish View Controller - Пожелание-->
         <scene sceneID="4Fo-CS-HDr">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uhI-Ie-7SF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <barButtonItem title="Готово" id="0of-Tp-5N7">
+                    <connections>
+                        <action selector="barReadyAction:" destination="2ko-4g-w2Y" id="hCa-uD-HHV"/>
+                    </connections>
+                </barButtonItem>
                 <viewController id="2ko-4g-w2Y" customClass="SNOneWishViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="o7F-P5-e8k">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Пожелание" minimumFontSize="5" id="Vy0-aV-3mg">
@@ -139,35 +145,145 @@
                         <outlet property="pushSoundButton" destination="jgC-H5-FkD" id="Bce-NR-S2N"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="uhI-Ie-7SF" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <barButtonItem title="Готово" id="0of-Tp-5N7">
+            </objects>
+            <point key="canvasLocation" x="617" y="-1154"/>
+        </scene>
+        <!--Wish View Controller - Четыре неограниченные-->
+        <scene sceneID="eQM-G4-oAk">
+            <objects>
+                <viewController id="P7d-HJ-gKu" customClass="SNWishViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="X2M-9R-EL2">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="Z3L-UD-Ww8">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <string key="text">Четыре неограниченные. Пусть у всех существ будет счастье и причина счастья. Пусть все существа будут свободны от страданий и причин страданий. Пусть они всегда испытывают счастье полностью свободное от страданий.Пусть они пребудут в великой равностности, вне привязанности к одним и неприязник другим.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="NLB-Wt-jbr">
+                                <rect key="frame" x="0.0" y="460" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem systemItem="trash" id="2Nd-a9-GqR">
+                                        <connections>
+                                            <action selector="pushDeleteAction:" destination="P7d-HJ-gKu" id="T9E-d9-YGX"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Четыре неограниченные" id="5n8-yC-YfH"/>
                     <connections>
-                        <action selector="barReadyAction:" destination="2ko-4g-w2Y" id="hCa-uD-HHV"/>
+                        <outlet property="buttonReady" destination="SSM-Tm-3Hf" id="THi-HX-6Gh"/>
+                        <outlet property="buttonSettings" destination="dWW-lL-PzG" id="7S6-BZ-NuY"/>
+                        <outlet property="textView" destination="Z3L-UD-Ww8" id="JX3-gH-Wot"/>
+                        <segue destination="9kw-fa-PYe" kind="push" identifier="goToSettingOneWish" id="MeS-Pl-Ezw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ar9-qx-tO4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <barButtonItem title="Готово" id="SSM-Tm-3Hf">
+                    <connections>
+                        <action selector="pushReadyAction:" destination="P7d-HJ-gKu" id="3O3-wd-Ycs"/>
+                    </connections>
+                </barButtonItem>
+                <barButtonItem title="Настройка" id="dWW-lL-PzG">
+                    <connections>
+                        <action selector="pushSettingsAction:" destination="P7d-HJ-gKu" id="AP6-rL-twK"/>
                     </connections>
                 </barButtonItem>
             </objects>
-            <point key="canvasLocation" x="917" y="-1006"/>
+            <point key="canvasLocation" x="719" y="-292"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="eQM-G4-oAk">
+        <!--Setting View Controller - Настройка-->
+        <scene sceneID="YHV-li-DQp">
             <objects>
-                <viewController id="P7d-HJ-gKu" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="X2M-9R-EL2">
-                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ar9-qx-tO4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableViewController id="9kw-fa-PYe" customClass="SNSettingViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="8Aw-mW-Qh1">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CellSwitch" id="ZMr-cO-qal" customClass="SNSettingCell">
+                                <rect key="frame" x="0.0" y="46" width="320" height="45"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="10" y="1" width="300" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="ZoC-qu-2uN">
+                                            <rect key="frame" x="203" y="8" width="79" height="27"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <connections>
+                                                <action selector="switchAction:" destination="ZMr-cO-qal" eventType="valueChanged" id="KZb-dw-tid"/>
+                                            </connections>
+                                        </switch>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Включить напоминания" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fir-wK-SWr">
+                                            <rect key="frame" x="20" y="11" width="192" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <connections>
+                                    <outlet property="switchInSettingsCell" destination="ZoC-qu-2uN" id="9fy-jU-VUf"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="Cell" textLabel="Jj0-oc-xgq" detailTextLabel="ddg-h9-6kW" style="IBUITableViewCellStyleValue1" id="Vzm-d5-JWx">
+                                <rect key="frame" x="0.0" y="91" width="320" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="10" y="0.0" width="300" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Jj0-oc-xgq">
+                                            <rect key="frame" x="10" y="11" width="35" height="21"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ddg-h9-6kW">
+                                            <rect key="frame" x="246" y="11" width="44" height="21"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.2196078431372549" green="0.32941176470588235" blue="0.52941176470588236" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="9kw-fa-PYe" id="lUt-OY-YGE"/>
+                            <outlet property="delegate" destination="9kw-fa-PYe" id="Kmm-Pj-yNG"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Настройка" id="zUF-KE-ftk"/>
+                    <connections>
+                        <segue destination="XT1-Pk-c2c" kind="push" identifier="goToSounds" id="JFc-tI-52R"/>
+                        <segue destination="uff-wz-uZO" kind="push" identifier="goToDates" id="AUK-eH-KRW"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eMa-66-ZF3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="755" y="131"/>
+            <point key="canvasLocation" x="1237" y="-292"/>
         </scene>
         <!--Sound View Controller - Выберите звук-->
         <scene sceneID="0Qf-BI-YVC">
             <objects>
                 <tableViewController id="XT1-Pk-c2c" customClass="SNSoundViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="f3Z-AH-tSp">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -190,14 +306,14 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cfA-Oz-0Nx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1421" y="-391"/>
+            <point key="canvasLocation" x="1965" y="93"/>
         </scene>
         <!--Schedule View Controller - Расписание-->
         <scene sceneID="DEf-pI-ITr">
             <objects>
                 <tableViewController id="uff-wz-uZO" customClass="SNScheduleViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="50" sectionHeaderHeight="22" sectionFooterHeight="22" id="S0O-8a-1z4">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -235,7 +351,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2My-Nl-3g8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1421" y="-1286"/>
+            <point key="canvasLocation" x="1965" y="-646"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="iNF-wP-5ca">
@@ -280,6 +396,16 @@
                 <relationship kind="action" name="addTimeAction:"/>
             </relationships>
         </class>
+        <class className="SNSettingCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SNSettingCell.h"/>
+            <relationships>
+                <relationship kind="action" name="switchAction:"/>
+                <relationship kind="outlet" name="switchInSettingsCell" candidateClass="UISwitch"/>
+            </relationships>
+        </class>
+        <class className="SNSettingViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SNSettingViewController.h"/>
+        </class>
         <class className="SNSoundViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SNSoundViewController.h"/>
         </class>
@@ -291,6 +417,17 @@
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
             </relationships>
         </class>
+        <class className="SNWishViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SNWishViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="pushDeleteAction:"/>
+                <relationship kind="action" name="pushReadyAction:"/>
+                <relationship kind="action" name="pushSettingsAction:"/>
+                <relationship kind="outlet" name="buttonReady" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="buttonSettings" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="textView" candidateClass="UITextView"/>
+            </relationships>
+        </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
@@ -298,6 +435,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="8U6-cE-RHh"/>
+        <segue reference="jQh-7Z-KYv"/>
+        <segue reference="nct-Zx-rKT"/>
+        <segue reference="n9u-dS-ZDp"/>
     </inferredMetricsTieBreakers>
 </document>

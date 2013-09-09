@@ -11,6 +11,8 @@
 #import "SNOneWish.h"
 #import "SNCell.h"
 #import "SNOneWishViewController.h"
+#import "SNWishViewController.h"
+
 
 @interface SNTableViewController ()
 
