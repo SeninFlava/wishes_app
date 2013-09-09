@@ -27,8 +27,10 @@
 @property NSString* title;
 @property NSString* text;
 
-@property NSDate* dateStart;
-@property NSString* repeatMode;
+@property NSDate* dateCreate;
+@property NSDate* dateUpdate;
+
+//@property NSString* repeatMode;
 @property NSMutableArray* schedule; //массив NSDate - даты запусков
 
 @property NSString* soundName;

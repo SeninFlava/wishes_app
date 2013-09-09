@@ -27,17 +27,6 @@
     return self;
 }
 
-//заполнили данные из текущего пожелания, вызываем вначале
--(void) prepareViewControllerWithCurrentWish
-{
-
-    self.labelTextWish.text = self.currentWish.title;
-    
-    NSString *soundName =[NSString stringWithFormat:@"Звук: %@",self.currentWish.soundName];
-    [self.pushSoundButton setTitle:soundName forState:UIControlStateNormal];
-
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -57,6 +46,18 @@
     //подготовили данные
     [self prepareViewControllerWithCurrentWish];
 }
+
+//заполнили данные из текущего пожелания, вызываем вначале
+-(void) prepareViewControllerWithCurrentWish
+{
+    
+    self.labelTextWish.text = self.currentWish.title;
+    
+    NSString *soundName =[NSString stringWithFormat:@"Звук: %@",self.currentWish.soundName];
+    [self.pushSoundButton setTitle:soundName forState:UIControlStateNormal];
+    
+}
+
 
 -(void) soundChange:(NSNotification*)note
 {
@@ -81,43 +82,16 @@
 }
 
 
-- (IBAction)pushSaveAction:(id)sender {
-    if (self.currentWish)
-    {
-        //заменяем
-        SNOneWish* wish = self.currentWish;
-        
-        wish.title = self.labelTextWish.text;
-        wish.repeatMode = @"HOUR";
 
-        
-        wish.soundName = @"";
-        //wish.status = @"YES";
-        
-        //[[SNWishes sharedWishes] updateWish:self.currentWish withWish:wish];
-        
-        [wish updateLocalNotification];
-        [[SNWishes sharedWishes] saveWishesToFile];
 
-    }
-    else
-    {
-        //cоздаем
-        //заменяем
-        SNOneWish* wish = [SNOneWish new];
-        
-        wish.title = self.labelTextWish.text;
-        
-        wish.repeatMode = @"HOUR";
-        
-        wish.soundName = @"";
-        wish.status = @"YES";
-        
-        [[SNWishes sharedWishes] addWish:wish];
-    }
-    
-    [self.navigationController popViewControllerAnimated:YES];
-    
+//когда уходим с окна, сохраняем
+-(void) viewWillDisappear:(BOOL)animated
+{
+    //заменяем текст
+    self.currentWish.title = self.labelTextWish.text;
+    self.currentWish.dateUpdate = [NSDate new];
+    [[SNWishes sharedWishes] saveWishesToFile];
+
 }
 
 - (IBAction)pushDeleteAction:(id)sender {
@@ -125,15 +99,17 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-//переходим к расписанию
+
+//переходим
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    //переходим к расписанию
     if ([segue.identifier isEqualToString:@"goToDates"]) {
-
-        [segue.destinationViewController setSchedule:self.currentWish.schedule];
+        //[segue.destinationViewController setSchedule:self.currentWish.schedule];
         [segue.destinationViewController setOneWish:self.currentWish];
     }
     
+    //переходим к выбору звуков
     if ([segue.identifier isEqualToString:@"goToSounds"]) {
         
         [segue.destinationViewController setCurrentWish:self.currentWish];

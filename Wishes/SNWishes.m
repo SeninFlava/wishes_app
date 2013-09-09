@@ -28,27 +28,19 @@ static SNWishes* __shared;
 -(NSDictionary*) createDictionaryFromWish:(SNOneWish*)wish
 {
 
-//    SNOneWish* emptyWish = [SNOneWish new];
-//    emptyWish.idWish=@0;
-//    emptyWish.title=@"";
-//    emptyWish.text=@"";
-//    emptyWish.dateStart=[NSDate new];
-//    emptyWish.repeatMode=@"";
-//    emptyWish.soundName=@"";
-//    emptyWish.status=@"";
-
     if (!wish.idWish) wish.idWish=@0;
     if (!wish.title) wish.title=@"";
     if (!wish.text) wish.text=@"";
-    if (!wish.dateStart) wish.dateStart=[NSDate new];
-    if (!wish.repeatMode) wish.repeatMode=@"";
+    if (!wish.dateCreate) wish.dateCreate=[NSDate new];
+    if (!wish.dateUpdate) wish.dateUpdate = [NSDate new];
+//    if (!wish.repeatMode) wish.repeatMode=@"";
     if (!wish.schedule) wish.schedule=[NSArray array];
     if (!wish.soundName) wish.soundName=@"";
     if (!wish.status) wish.status=@"";
     
     
-    NSArray* objects = [NSArray arrayWithObjects:wish.idWish,wish.title,wish.text,wish.dateStart,wish.repeatMode,wish.schedule, wish.soundName,wish.status, nil];
-    NSArray* keys = [NSArray arrayWithObjects:@"idWish",@"title",@"text",@"dateStart",@"repeatMode",@"schedule",@"soundName",@"status", nil];
+    NSArray* objects = [NSArray arrayWithObjects:wish.idWish,wish.title,wish.text,wish.dateCreate,wish.dateUpdate,/*wish.repeatMode,*/wish.schedule, wish.soundName,wish.status, nil];
+    NSArray* keys = [NSArray arrayWithObjects:@"idWish",@"title",@"text",@"dateCreate",@"dateUpdate",/*@"repeatMode",*/@"schedule",@"soundName",@"status", nil];
     NSDictionary* returnDict = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
     
     return returnDict;
@@ -61,9 +53,10 @@ static SNWishes* __shared;
     returnWish.idWish = [dictionary objectForKey:@"idWish"];
     returnWish.title = [dictionary objectForKey:@"title"];
     returnWish.text = [dictionary objectForKey:@"text"];
-    returnWish.dateStart = [dictionary objectForKey:@"dateStart"];
-    returnWish.repeatMode = [dictionary objectForKey:@"repeatMode"];
-    returnWish.schedule = [dictionary objectForKey:@"schedule"];
+    returnWish.dateCreate = [dictionary objectForKey:@"dateCreate"];
+    returnWish.dateUpdate = [dictionary objectForKey:@"dateUpdate"];
+    //returnWish.repeatMode = [dictionary objectForKey:@"repeatMode"];
+    returnWish.schedule = [NSMutableArray arrayWithArray:[dictionary objectForKey:@"schedule"]];
     returnWish.soundName = [dictionary objectForKey:@"soundName"];
     returnWish.status = [dictionary objectForKey:@"status"];
     
@@ -124,91 +117,27 @@ static SNWishes* __shared;
 }
 
 //добавить пожелание
--(void) addWish:(SNOneWish *)wish
+-(SNOneWish *) addWish
 {
+    SNOneWish* wish = [SNOneWish new];
+    
     wish.idWish = [self getNewId];
-    [self.allWishes addObject:wish];
-    if ([wish.status isEqualToString:@"YES"])
-    {
-        [wish createLocalNotification];
-    }
+    wish.status = @"NO";
+    wish.dateCreate = [NSDate new];
+    wish.dateUpdate = [NSDate new];
+    wish.soundName = nil;
+    wish.schedule = [NSMutableArray new];
     
+    NSArray* arr = @[wish];
+    self.allWishes =[NSMutableArray arrayWithArray:[arr arrayByAddingObjectsFromArray:self.allWishes]];
+    
+//    [self.allWishes addObject:wish];
     [self saveWishesToFile];
-}
-
-//изменить пожелание
--(void) updateWish:(SNOneWish *)oldWish withWish:(SNOneWish *)newWish
-{
-    newWish.idWish=oldWish.idWish;
     
-    NSLog(@"UPDATE newStatus=%@",newWish.status);
-    NSLog(@"UPDATE oldStatus=%@",oldWish.status);
-    
-    
-    //проверяем надо ли удалить или добавить локальное уведомление
-//    if (![newWish.status isEqualToString:oldWish.status])
-//    {
-//        //надо
-//        if ([newWish.status isEqualToString:@"YES"])
-//        {
-//            [newWish createLocalNotification];
-//        }
-//        else
-//        {
-//            [newWish deleteLocalNotification];
-//        }
-//    }
-    
-    [self deleteWish:oldWish];
-    [self addWish:newWish];
-    /*
-    NSUInteger indexOfReplace=-1;
-    for (SNOneWish* item in self.allWishes)
-    {
-        if (item.idWish.integerValue==oldWish.idWish.integerValue)
-        {
-            indexOfReplace=[self.allWishes indexOfObject:item];
-            //[item deleteLocalNotification];
-        }
-    }
-    
-    if (indexOfReplace!=-1)
-    {
-        [self.allWishes replaceObjectAtIndex:indexOfReplace withObject:newWish];
-    }
-     */
+    return wish;
 }
 
 
-//поменять статус
--(void) changeStatus:(SNOneWish*)wish newStatus:(NSString*)newStatus
-{
-    NSUInteger indexOfChange=-1;
-    for (SNOneWish* item in self.allWishes)
-    {
-        if (item.idWish.integerValue==wish.idWish.integerValue)
-        {
-            indexOfChange=[self.allWishes indexOfObject:item];
-            
-        }
-    }
-    
-    if (indexOfChange!=-1)
-    {
-        SNOneWish* wish = [self.allWishes objectAtIndex:indexOfChange];
-        wish.status=newStatus;
-        if ([newStatus isEqualToString:@"YES"])
-        {
-            [wish createLocalNotification];
-        }
-        else
-        {
-            [wish deleteLocalNotification];
-        }
-    }
-    
-    [self saveWishesToFile];
-}
 
 
 //удалить пожелание

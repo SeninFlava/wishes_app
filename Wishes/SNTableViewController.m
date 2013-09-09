@@ -148,10 +148,10 @@
     if ([segue.identifier isEqualToString:@"goToOneWish"]) {
         SNOneWish *wish = [[SNWishes sharedWishes].allWishes objectAtIndex:[self.tableView indexPathForSelectedRow].row];
         [segue.destinationViewController setCurrentWish:wish];
-        //[segue.destinationViewController prepareViewControllerWithCurrentWish];
     }
     if ([segue.identifier isEqualToString:@"goToNewWish"]) {
-        [segue.destinationViewController setCurrentWish:nil];
+        SNOneWish *wish = [[SNWishes sharedWishes] addWish];
+        [segue.destinationViewController setCurrentWish:wish];
     }
     
 }

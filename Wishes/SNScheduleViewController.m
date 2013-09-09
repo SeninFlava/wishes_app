@@ -12,7 +12,9 @@
 #import "UNActionPicker.h"
 
 @interface SNScheduleViewController () <UIActionSheetDelegate>
-
+{
+    NSInteger _indexSelectedDate;
+}
 @end
 
 @implementation SNScheduleViewController
@@ -26,10 +28,25 @@
     return self;
 }
 
-- (void)viewDidLoad
+//сортировка расписания
+-(void) sortSchedule
+{
+    NSArray *sortedArray;
+    sortedArray = [self.sortedSchedule sortedArrayUsingComparator: \
+                   ^NSComparisonResult(id a, id b) {
+                       NSDate *first = a;
+                       NSDate *second = b;
+                       return [first compare:second];
+                   }];
+    //array = sortedArray;
+    self.sortedSchedule = [NSMutableArray arrayWithArray:sortedArray];
+}
+
+-(void)viewDidLoad
 {
     [super viewDidLoad];
 
+    self.sortedSchedule = self.oneWish.schedule;
 }
 
 - (void)didReceiveMemoryWarning
@@ -47,17 +64,18 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.schedule count];
+    return [self.sortedSchedule count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     NSDateFormatter* formatter = [NSDateFormatter new];
-    [formatter setDateFormat:@"hh:mm"];
-    NSDate* dateInCell = [self.schedule objectAtIndex:indexPath.row];
+    [formatter setDateFormat:@"HH:mm"];
+    NSDate* dateInCell = [self.sortedSchedule objectAtIndex:indexPath.row];
     
     cell.textLabel.text = [formatter stringFromDate:dateInCell];
     
@@ -80,7 +98,9 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         
         // Delete the row from the data source
-        [self.schedule removeObjectAtIndex:indexPath.row];
+        [self.sortedSchedule removeObjectAtIndex:indexPath.row];
+        
+        self.oneWish.schedule = self.sortedSchedule;
         [[SNWishes sharedWishes] saveWishesToFile];
         [self.oneWish updateLocalNotification];
         
@@ -110,36 +130,52 @@
 
 #pragma mark - Table view delegate
 
+//когда кликнули по ячейке - вызываем пикер и меняем выбранное время
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    _indexSelectedDate = indexPath.row;
+    UNActionPicker *actionPicker = [[UNActionPicker alloc] initWithDate:[self.sortedSchedule objectAtIndex:_indexSelectedDate] AndTitle:@"Измените время"];
+    [actionPicker setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
+    [actionPicker setDoneButtonTitle:@"Выбрать" color:[UIColor blackColor]];
+    [actionPicker setCancelButtonTitle:@"Отменить" color:[UIColor blackColor]];
+    actionPicker.delegate = self;
+    [actionPicker showInView:self.view];
+    
 }
 
 
 
-
-
+//нажали добавить новую дату
 - (IBAction)addTimeAction:(id)sender {
-    UNActionPicker *actionPicker = [[UNActionPicker alloc] initWithTimeAndTitle:@"Выберите время"];
+    _indexSelectedDate = -1;
+    UNActionPicker *actionPicker = [[UNActionPicker alloc] initWithDate:[NSDate new] AndTitle:@"Выберите время"];
     [actionPicker setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
-    [actionPicker setCloseButtonTitle:@"Done" color:[UIColor blackColor]];
+    [actionPicker setDoneButtonTitle:@"Выбрать" color:[UIColor blackColor]];
+    [actionPicker setCancelButtonTitle:@"Отменить" color:[UIColor blackColor]];
     actionPicker.delegate = self;
     [actionPicker showInView:self.view];
-    
-    
 }
 
 //что-то выбрали из пикера
 - (void)didSelectItem:(id)item {
-    //NSLog(@"%@", item);
-    [self.schedule addObject:item];
-    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationBottom];
+    
+    if (_indexSelectedDate==-1)
+    {
+        //создвем новую дату в расписании
+        [self.sortedSchedule addObject:item];
+    }
+    else
+    {
+        //меняем выбранную
+        [self.sortedSchedule replaceObjectAtIndex:_indexSelectedDate withObject:item];
+    }
+    
+    [self sortSchedule];
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationTop];
+    
+    self.oneWish.schedule = self.sortedSchedule;
     [[SNWishes sharedWishes] saveWishesToFile];
     [self.oneWish updateLocalNotification];
 }

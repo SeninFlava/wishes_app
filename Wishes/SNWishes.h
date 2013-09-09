@@ -21,9 +21,7 @@
 -(void) saveWishesToFile;
 
 
--(void) addWish:(SNOneWish*) wish;
--(void) updateWish:(SNOneWish*)oldWish withWish:(SNOneWish*)newWish;
--(void) changeStatus:(SNOneWish*)wish newStatus:(NSString*)newStatus;
+-(SNOneWish*) addWish;
 -(void) deleteWish:(SNOneWish*) wish;
 
 

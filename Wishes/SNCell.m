@@ -57,18 +57,13 @@
         self.switchProperty.on = NO;
     }
     
-    if ([self.wishInCell.repeatMode isEqualToString:@"HOUR"])
-    {
-        self.labelDataTime.text = @"Каждый час";
-    }
-    else
-    {
-        NSDateFormatter* formatter = [NSDateFormatter new];
-        [formatter setDateFormat:@"hh:mm"];
-        [formatter stringFromDate:self.wishInCell.dateStart];
-        NSString* str = [NSString stringWithFormat:@"Каждый день в %@",[formatter stringFromDate:self.wishInCell.dateStart]];
-        self.labelDataTime.text = str;
-    }
+    //выводим дату апдейта
+    NSDateFormatter* formatter = [NSDateFormatter new];
+    [formatter setDateFormat:@"dd.MM.yyyy HH:mm:ss"];
+    NSString* str = [formatter stringFromDate:self.wishInCell.dateUpdate];
+    
+    
+    self.labelDataTime.text = str;
     
     self.labelTextWish.text = self.wishInCell.title;
 }

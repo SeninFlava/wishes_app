@@ -28,8 +28,6 @@
 //@property NSString *soundFileName;
 
 
-- (IBAction)pushSaveAction:(id)sender;
-
 - (IBAction)pushDeleteAction:(id)sender;
 
 

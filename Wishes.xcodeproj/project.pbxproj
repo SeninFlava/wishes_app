@@ -127,25 +127,11 @@
 			isa = PBXGroup;
 			children = (
 				5F237D3F17D8D26200BC540E /* MainStoryboard.storyboard */,
-				5F31802517DBFDCE0043B68D /* UNActionPicker.h */,
-				5F31802617DBFDCF0043B68D /* UNActionPicker.m */,
-				5F237D4A17D9202B00BC540E /* SNOneWish.h */,
-				5F237D4B17D9202B00BC540E /* SNOneWish.m */,
-				5F237D4D17D9203D00BC540E /* SNWishes.h */,
-				5F237D4E17D9203D00BC540E /* SNWishes.m */,
 				5F237D3617D8D26200BC540E /* SNAppDelegate.h */,
 				5F237D3717D8D26200BC540E /* SNAppDelegate.m */,
-				5F237D5217D9385C00BC540E /* SNCell.h */,
-				5F237D5317D9385C00BC540E /* SNCell.m */,
-				5F237D5517D9388100BC540E /* SNTableViewController.h */,
-				5F237D5617D9388100BC540E /* SNTableViewController.m */,
-				5F237D5817D9408C00BC540E /* SNOneWishViewController.h */,
-				5F237D5917D9408C00BC540E /* SNOneWishViewController.m */,
-				5F237D5B17DA09A600BC540E /* SNScheduleViewController.h */,
-				5F237D5C17DA09A600BC540E /* SNScheduleViewController.m */,
-				5FCFE56B17DD553800CDBEC0 /* SNSoundViewController.h */,
-				5FCFE56C17DD553800CDBEC0 /* SNSoundViewController.m */,
 				5F237D5017D92A5500BC540E /* Data.plist */,
+				5FCFE57C17DDFF0200CDBEC0 /* Model */,
+				5FCFE57D17DDFF2400CDBEC0 /* UI */,
 				5FCFE56817DD53FC00CDBEC0 /* sounds */,
 				5F237D2E17D8D26200BC540E /* Supporting Files */,
 			);
@@ -177,6 +163,36 @@
 				5FCFE56917DD53FC00CDBEC0 /* sms-received1.caf */,
 			);
 			path = sounds;
+			sourceTree = "<group>";
+		};
+		5FCFE57C17DDFF0200CDBEC0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5F237D4A17D9202B00BC540E /* SNOneWish.h */,
+				5F237D4B17D9202B00BC540E /* SNOneWish.m */,
+				5F237D4D17D9203D00BC540E /* SNWishes.h */,
+				5F237D4E17D9203D00BC540E /* SNWishes.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		5FCFE57D17DDFF2400CDBEC0 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				5F31802517DBFDCE0043B68D /* UNActionPicker.h */,
+				5F31802617DBFDCF0043B68D /* UNActionPicker.m */,
+				5F237D5217D9385C00BC540E /* SNCell.h */,
+				5F237D5317D9385C00BC540E /* SNCell.m */,
+				5F237D5517D9388100BC540E /* SNTableViewController.h */,
+				5F237D5617D9388100BC540E /* SNTableViewController.m */,
+				5F237D5817D9408C00BC540E /* SNOneWishViewController.h */,
+				5F237D5917D9408C00BC540E /* SNOneWishViewController.m */,
+				5F237D5B17DA09A600BC540E /* SNScheduleViewController.h */,
+				5F237D5C17DA09A600BC540E /* SNScheduleViewController.m */,
+				5FCFE56B17DD553800CDBEC0 /* SNSoundViewController.h */,
+				5FCFE56C17DD553800CDBEC0 /* SNSoundViewController.m */,
+			);
+			name = UI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

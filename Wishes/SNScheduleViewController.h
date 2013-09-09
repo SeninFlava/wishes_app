@@ -12,7 +12,7 @@
 @interface SNScheduleViewController : UITableViewController 
 
 @property SNOneWish *oneWish;
-@property NSMutableArray* schedule;
+@property NSMutableArray* sortedSchedule;
 
 - (IBAction)addTimeAction:(id)sender;
 
