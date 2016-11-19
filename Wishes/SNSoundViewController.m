@@ -29,10 +29,27 @@
 {
     [super viewDidLoad];
 
-    //подготовили файлы для воспроизведения
-    //self.soundsNames = @[@"Без звука",@"sms-received1.caf"];
     
-    self.soundsNames = @[@"Nosound.mp3",@"Woman",@"2.mp3",@"sms-received1.caf"];
+    self.soundsNames = @[@"-",
+                         @"Acord",
+                         @"Bamboo",
+                         @"Enter",
+                         @"End",
+                         @"Note",
+                         @"Key",
+                         @"Popcorn",
+                         @"Hi",
+                         @"Puls",
+                         @"Sint",
+                         @"Cicle",
+                         
+                         @"Alarmclock",
+                         @"Laugh",
+                         @"Laugh2",
+                         @"Kash",
+                         @"Shelk",
+                         @"Reload",
+                         @"Time"];
     
     self.sounds = [NSArray array];
     for (NSString *soundName in self.soundsNames)
@@ -55,16 +72,25 @@
     }
 
     
-    
-    //self.sounds = @[@"Без звука",@"sms-received1.caf"];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+
+
+-(void)viewWillAppear:(BOOL)animated{
+    //выставляем цвет фона
+    UIColor* color = [[SNFontManager sharedManager] getBackGroundColor];
+    UIView* view = [UIView new];
+    [view setBackgroundColor:color];
+    [self.tableView setBackgroundView:view];
+    
+    //выставляем цвет заголовка
+    [self.navigationController.navigationBar setBarTintColor:[[SNFontManager sharedManager] getTitleColor]];
+    //цвет переключателя
+    [[UISwitch appearance] setOnTintColor:[[SNFontManager sharedManager] getTitleFontColor]];
+    //цвет букв в заголовке
+    [self.navigationController.navigationBar setTintColor:[[SNFontManager sharedManager] getTitleFontColor]];
+
+}
 
 
 #pragma mark - Table view data source
@@ -96,47 +122,11 @@
         [cell setAccessoryType:UITableViewCellAccessoryNone];
     }
     
+    [self setFontCell:cell];
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 #pragma mark - Table view delegate
 
@@ -169,9 +159,25 @@
 
     //переприсвоить файл
     self.currentWish.soundName = [self.soundsNames objectAtIndex:indexPath.row];
+    
+    //обновить уведомления
+    [self.currentWish updateLocalNotification];
+    
     //сохранить
     [[SNWishes sharedWishes] saveWishesToFile];
     
+}
+
+-(void) setFontCell:(UITableViewCell*) cell {
+    //выставляем цвет фона
+    UIColor* colorBack = [[SNFontManager sharedManager] getBackGroundColor];
+    UIView* view = [UIView new];
+    [view setBackgroundColor:colorBack];
+    
+    cell.textLabel.backgroundColor = [[SNFontManager sharedManager] getBackGroundColor];
+    cell.detailTextLabel.backgroundColor = [[SNFontManager sharedManager] getBackGroundColor];
+    
+    [cell setBackgroundView:view];
 }
 
 @end

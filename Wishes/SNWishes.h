@@ -14,6 +14,8 @@
 
 //массив всех напоминаний состоит из SNOneWish
 @property NSMutableArray* allWishes;
+-(void) sortWishesByDateUpadate;
+
 
 +(SNWishes*) sharedWishes;
 
@@ -23,6 +25,9 @@
 
 -(SNOneWish*) addWish;
 -(void) deleteWish:(SNOneWish*) wish;
+-(SNOneWish*)returnWishById:(NSNumber*)idW;
 
+
+-(void) updateAllNotifications;
 
 @end

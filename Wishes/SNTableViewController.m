@@ -12,9 +12,9 @@
 #import "SNCell.h"
 //#import "SNOneWishViewController.h"
 #import "SNWishViewController.h"
+#import "SNPriceManager.h"
 
-
-@interface SNTableViewController ()
+@interface SNTableViewController () <UIAlertViewDelegate>
 
 @end
 
@@ -43,6 +43,25 @@
 
 -(void) viewWillAppear:(BOOL)animated
 {
+    [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"currentWish"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    //выставляем цвет фона
+    UIColor* color = [[SNFontManager sharedManager] getBackGroundColor];
+    UIView* view = [UIView new];
+    [view setBackgroundColor:color];
+    [self.tableView setBackgroundView:view];
+    
+    //выставляем цвет заголовка
+    [self.navigationController.navigationBar setBarTintColor:[[SNFontManager sharedManager] getTitleColor]];
+    //цвет переключателя
+    [[UISwitch appearance] setOnTintColor:[[SNFontManager sharedManager] getTitleFontColor]];
+    //цвет букв в заголовке
+    [self.navigationController.navigationBar setTintColor:[[SNFontManager sharedManager] getTitleFontColor]];
+
+    
+    
+    [[SNWishes sharedWishes] sortWishesByDateUpadate];
     [self.tableView reloadData];
 }
 
@@ -80,52 +99,34 @@
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
 
-/*
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
+        
         // Delete the row from the data source
+        SNOneWish* wish = [[SNWishes sharedWishes].allWishes objectAtIndex:indexPath.row];
+        [[SNWishes sharedWishes] deleteWish:wish];
+        [[SNWishes sharedWishes] saveWishesToFile];
+        
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
+    }
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+    }
 }
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
 
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
+
 
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
+    // Navigation logic may go here. Create and push another <#DetailViewController#>view controller.
     /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
+     <#DetailViewController#> *detailViewController = [[ alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
      // ...
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
@@ -134,14 +135,26 @@
 
 //нажали добавить пожелание
 - (IBAction)addWishAction:(id)sender {
-    
+//gросто совершаем переход
 }
+
+
+- (IBAction)pushFontSelectAction:(id)sender {
+//проверяем какой аккаунт у нас преобретен
+    //[self performSegueWithIdentifier:@"goToFonts" sender:self];
+    [self performSegueWithIdentifier:@"goToFonts" sender:self];
+
+}
+
+
+
 
 - (IBAction)showAll:(id)sender {
     UIApplication *app                = [UIApplication sharedApplication];
     NSArray *oldNotifications         = [app scheduledLocalNotifications];
     NSLog(@"AllNotifications=%@",oldNotifications);
 }
+
 
 
 

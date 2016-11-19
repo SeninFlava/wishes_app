@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>dateCreate</key>
+		<date>2013-09-16T16:23:39Z</date>
+		<key>dateUpdate</key>
+		<date>2013-09-22T13:40:58Z</date>
+		<key>idWish</key>
+		<integer>1</integer>
+		<key>schedule</key>
+		<array/>
+		<key>soundName</key>
+		<string>нет</string>
+		<key>status</key>
+		<string>NO</string>
+		<key>text</key>
+		<string>Четыре неограниченных
+
+Пусть у всех существ будет счастье и причина счастья
+
+Пусть все существа будут свободны от страданий и причины страданий
+
+Пусть они всегда испытывают счастье полностью свободное от страданий
+
+Пусть они пребудут в великой равностности, вне привязанности и неприязни
+</string>
+		<key>title</key>
+		<string>Четыре неограниченных</string>
+	</dict>
+</array>
+</plist>

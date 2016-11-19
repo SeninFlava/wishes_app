@@ -1,0 +1,52 @@
+/* 
+  Localizable.strings
+  SafeBook
+
+  Created by Alexander Senin on 25.10.13.
+  Copyright (c) 2013 Alexander Senin. All rights reserved.
+
+*/
+
+"LANG"="ENG";
+
+"Message" = "Message";
+"Settings fonts, sizes and colors available in the full version."="Settings fonts, sizes and colors available in the full version.";
+"Cancel"="Cancel";
+"Restore"="Restore";
+"Restored"="Restored";
+"Buy for %@"="Buy for %@";
+"Complete"="Complete";
+"Purchase is made"="Purchase is made";
+"Congratulation!"="Congratulation!";
+"Error"="Error";
+"You did't buy full version."="You did't buy full version.";
+
+
+
+"Detele wish?"="Detele wish?";
+"Delete"="Delete";
+"Enter text wish"="Enter text wish";
+
+
+"Set up reminders for wish \"%@\""="Set up reminders for wish \"%@\"";
+"Schedule:"="Schedule:";
+"Sound reminder:"="Sound reminder:";
+
+"Add time"="Add time";
+"Select"="Select";
+"Change time"="Change time";
+
+"Title color" = "Title color";
+"Font color"="Font color";
+"Background color"="Background color";
+"Font"="Font";
+"Size"="Size";
+"Title font color"="Title font color";
+
+"Font settings"="Font settings";
+
+"Not scheduled"="Not scheduled";
+
+"Wish"="Wish";
+"Show"="Show";
+"Full version"="Full version";

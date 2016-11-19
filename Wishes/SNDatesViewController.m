@@ -8,6 +8,8 @@
 
 #import "SNDatesViewController.h"
 #import "UNActionPicker.h"
+#import "ActionSheetDatePicker.h"
+
 
 @interface SNDatesViewController ()<UIActionSheetDelegate>
 {
@@ -28,15 +30,33 @@
     return self;
 }
 
-//сортировка расписания
+//сортировка расписания по времени
 -(void) sortSchedule
 {
-    NSArray *sortedArray;
-    sortedArray = [self.sortedSchedule sortedArrayUsingComparator: \
+    NSDateFormatter* formatter = [NSDateFormatter new];
+    [formatter setDateFormat:@"HHmm"];
+    
+    NSArray *sortedArray = [NSArray new];
+//    for (NSDate* curDate in self.oneWish.schedule) {
+//
+//        sortedArray = [sortedArray arrayByAddingObject:<#(id)#>]
+//        
+//    }
+    //NSLog(@"start sort");
+    sortedArray = [self.sortedSchedule sortedArrayUsingComparator:
                    ^NSComparisonResult(id a, id b) {
                        NSDate *first = a;
                        NSDate *second = b;
-                       return [first compare:second];
+                       NSInteger iFirst = [[formatter stringFromDate:first] integerValue];
+                       NSInteger iSecond = [[formatter stringFromDate:second] integerValue];
+                       
+                       //NSLog(@"first=%i second=%i",iFirst,iSecond);
+                       
+                       if (iFirst>iSecond)
+                           return 1;
+                       else
+                           return 0;
+                       //return [first compare:second];
                    }];
     //array = sortedArray;
     self.sortedSchedule = [NSMutableArray arrayWithArray:sortedArray];
@@ -45,11 +65,31 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
-    
     self.sortedSchedule = self.oneWish.schedule;
-    
-    
+    [self sortSchedule];
 }
+
+-(void) viewWillAppear:(BOOL)animated
+{
+    //выставляем цвет фона
+    UIColor* color = [[SNFontManager sharedManager] getBackGroundColor];
+    UIView* view = [UIView new];
+    [view setBackgroundColor:color];
+    [self.tableView setBackgroundView:view];
+    
+    //цвет тулбара
+    [self.toolBar setBarTintColor:[[SNFontManager sharedManager] getBackGroundColor]];
+    [self.toolBar setTintColor:[[SNFontManager sharedManager] getTitleFontColor]];
+    
+    //выставляем цвет заголовка
+    [self.navigationController.navigationBar setBarTintColor:[[SNFontManager sharedManager] getTitleColor]];
+    //цвет переключателя
+    [[UISwitch appearance] setOnTintColor:[[SNFontManager sharedManager] getTitleFontColor]];
+    //цвет букв в заголовке
+    [self.navigationController.navigationBar setTintColor:[[SNFontManager sharedManager] getTitleFontColor]];
+
+}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -80,7 +120,7 @@
     NSDate* dateInCell = [self.sortedSchedule objectAtIndex:indexPath.row];
     
     cell.textLabel.text = [formatter stringFromDate:dateInCell];
-    
+    [self setFontCell:cell];
     return cell;
 }
 
@@ -121,51 +161,75 @@
  }
  */
 
-/*
+
  // Override to support conditional rearranging of the table view.
  - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
  {
- // Return NO if you do not want the item to be re-orderable.
- return YES;
+     // Return NO if you do not want the item to be re-orderable.
+     return NO;
  }
- */
+
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)aTableView
+           editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewCellEditingStyleDelete;
+}
+
 
 #pragma mark - Table view delegate
+
+//нажали удалить
+- (IBAction)pushDeleteAction:(id)sender {
+    [self.tableView setEditing:!self.tableView.editing animated:YES];
+}
+
+
 
 //когда кликнули по ячейке - вызываем пикер и меняем выбранное время
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
+    UITableViewCell* secectedCell = [tableView cellForRowAtIndexPath:indexPath];
+    
     _indexSelectedDate = indexPath.row;
-    UNActionPicker *actionPicker = [[UNActionPicker alloc] initWithDate:[self.sortedSchedule objectAtIndex:_indexSelectedDate] AndTitle:@"Измените время"];
-    [actionPicker setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
-    [actionPicker setDoneButtonTitle:@"Выбрать" color:[UIColor blackColor]];
-    [actionPicker setCancelButtonTitle:@"Отменить" color:[UIColor blackColor]];
-    actionPicker.delegate = self;
-    [actionPicker showInView:self.view];
+    
+    ActionSheetDatePicker* datePicker;
+    datePicker = [ActionSheetDatePicker showPickerWithTitle:loc_str(@"Change time") datePickerMode:UIDatePickerModeTime selectedDate:[self.sortedSchedule objectAtIndex:_indexSelectedDate] target:self action:@selector(didSelectItem:) origin:secectedCell.textLabel];
+    
+//    UNActionPicker *actionPicker = [[UNActionPicker alloc] initWithDate:[self.sortedSchedule objectAtIndex:_indexSelectedDate] AndTitle:loc_str(@"Change time")];
+//    [actionPicker setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
+//    [actionPicker setDoneButtonTitle:loc_str(@"Select") color:[UIColor blackColor]];
+//    [actionPicker setCancelButtonTitle:loc_str(@"Cancel") color:[UIColor blackColor]];
+//    actionPicker.delegate = self;
+//    [actionPicker showInView:self.view];
     
 }
 
 
 
+
 //нажали добавить новую дату
 - (IBAction)addTimeAction:(id)sender {
+    [self.tableView setEditing:NO animated:YES];
+    
     _indexSelectedDate = -1;
-    UNActionPicker *actionPicker = [[UNActionPicker alloc] initWithDate:[NSDate new] AndTitle:@"Выберите время"];
-    [actionPicker setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
-    [actionPicker setDoneButtonTitle:@"Выбрать" color:[UIColor blackColor]];
-    [actionPicker setCancelButtonTitle:@"Отменить" color:[UIColor blackColor]];
-    actionPicker.delegate = self;
-    [actionPicker showInView:self.view];
+
+    ActionSheetDatePicker* datePicker;
+    datePicker = [ActionSheetDatePicker showPickerWithTitle:loc_str(@"Add time") datePickerMode:UIDatePickerModeTime selectedDate:[NSDate new] target:self action:@selector(didSelectItem:) origin:self.buttonAdd];
+    
+//    UNActionPicker *actionPicker = [[UNActionPicker alloc] initWithDate:[NSDate new] AndTitle:loc_str(@"Add time")];
+//    [actionPicker setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
+//    [actionPicker setDoneButtonTitle:loc_str(@"Select") color:[UIColor blackColor]];
+//    [actionPicker setCancelButtonTitle:loc_str(@"Cancel") color:[UIColor blackColor]];
+//    actionPicker.delegate = self;
+//    [actionPicker showInView:self.view];
 }
 
-- (IBAction)pushDeleteAction:(id)sender {
-    NSLog(@"pushDelete");
-}
 
 //что-то выбрали из пикера
-- (void)didSelectItem:(id)item {
+- (void)didSelectItem:(NSDate*)item {
     
     if (_indexSelectedDate==-1)
     {
@@ -185,5 +249,19 @@
     [[SNWishes sharedWishes] saveWishesToFile];
     [self.oneWish updateLocalNotification];
 }
+
+
+-(void) setFontCell:(UITableViewCell*) cell {
+    //выставляем цвет фона
+    UIColor* colorBack = [[SNFontManager sharedManager] getBackGroundColor];
+    UIView* view = [UIView new];
+    [view setBackgroundColor:colorBack];
+    
+    cell.textLabel.backgroundColor = [[SNFontManager sharedManager] getBackGroundColor];
+    cell.detailTextLabel.backgroundColor = [[SNFontManager sharedManager] getBackGroundColor];
+    
+    [cell setBackgroundView:view];
+}
+
 
 @end

@@ -1,0 +1,54 @@
+/* 
+  Localizable.strings
+  SafeBook
+
+  Created by Alexander Senin on 25.10.13.
+  Copyright (c) 2013 Alexander Senin. All rights reserved.
+
+*/
+
+"LANG"="RUS";
+
+
+"Message" = "Сообщение";
+"Settings fonts, sizes and colors available in the full version."="Настройки шрифтов, размеров и цветов доступны в полной версии программы";
+"Cancel"="Отмена";
+"Restore"="Восстановить";
+"Restored"="Восстановлено";
+"Buy for %@"="Купить за %@";
+"Complete"="Завершено";
+"Purchase is made"="Покупка совершена";
+"Congratulation!"="Поздравляем!";
+"Error"="Ошибка";
+"You did't buy full version."="Вы не покупали полную версию.";
+
+
+
+"Detele wish?"="Удалить пожелание?";
+"Delete"="Удалить";
+"Enter text wish"="Введите пожелание";
+
+
+"Set up reminders for wish \"%@\""="Настройка напоминаний для пожелания \"%@\"";
+"Schedule:"="Расписание:";
+"Sound reminder:"="Звук напоминания:";
+
+"Add time"="Добавить";
+"Select"="OK";
+"Change time"="Сменить время";
+
+"Title color" = "Цвет заголовка";
+"Font color"="Цвет шрифта";
+"Background color"="Цвет фона";
+"Font"="Шрифт";
+"Size"="Размер";
+"Title font color"="Цвет шрифта заголовка";
+
+"Font settings"="Шрифт";
+
+"Not scheduled"="Не запланированно";
+
+"Wish"="Пожелание";
+"Show"="Показать";
+
+"Full version"="Полная версия";

@@ -1,0 +1,49 @@
+- (void)viewWillAppear:(BOOL)animated {
+[textView setText:_notesText];
+
+// Register notifications for when the keyboard appears
+[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+[[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)keyboardWillShow:(NSNotification*)notification {
+[self moveTextViewForKeyboard:notification up:YES];
+}
+
+- (void)keyboardWillHide:(NSNotification*)notification {
+[self moveTextViewForKeyboard:notification up:NO];
+}
+
+- (void)moveTextViewForKeyboard:(NSNotification*)notification up:(BOOL)up {
+NSDictionary *userInfo = [notification userInfo];
+NSTimeInterval animationDuration;
+UIViewAnimationCurve animationCurve;
+CGRect keyboardRect;
+
+[[userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey] getValue:&animationCurve];
+animationDuration = [[userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+keyboardRect = [[userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+keyboardRect = [self.view convertRect:keyboardRect fromView:nil];
+
+[UIView beginAnimations:@"ResizeForKeyboard" context:nil];
+[UIView setAnimationDuration:animationDuration];
+[UIView setAnimationCurve:animationCurve];
+
+if (up == YES) {
+CGFloat keyboardTop = keyboardRect.origin.y;
+CGRect newTextViewFrame = textView.frame;
+originalTextViewFrame = textView.frame;
+newTextViewFrame.size.height = keyboardTop - textView.frame.origin.y - 10;
+
+textView.frame = newTextViewFrame;
+} else {
+// Keyboard is going away (down) - restore original frame
+textView.frame = originalTextViewFrame;
+}
+
+[UIView commitAnimations];
+}

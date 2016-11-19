@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>dateCreate</key>
+		<date>2013-09-16T16:23:39Z</date>
+		<key>dateUpdate</key>
+		<date>2013-09-22T13:40:58Z</date>
+		<key>idWish</key>
+		<integer>1</integer>
+		<key>schedule</key>
+		<array/>
+		<key>soundName</key>
+		<string>-</string>
+		<key>status</key>
+		<string>NO</string>
+		<key>text</key>
+		<string>The Four Immeasurables
+
+May all beings have happiness and the causes of happiness.
+
+May all beings not have suffering and the causes of suffering.
+
+May all beings never be without the supreme bliss, free from all suffering.
+
+May all beings live in the great equanimity, free from all attachment and aversion.
+        </string>
+    <key>title</key>
+		<string>Four limitless ones</string>
+	</dict>
+</array>
+</plist>

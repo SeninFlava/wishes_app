@@ -14,9 +14,12 @@
 @interface SNDatesViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
+@property (weak, nonatomic) IBOutlet UIToolbar *toolBar;
+
 @property SNOneWish *oneWish;
 @property NSMutableArray* sortedSchedule;
 
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *buttonAdd;
 - (IBAction)addTimeAction:(id)sender;
 
 - (IBAction)pushDeleteAction:(id)sender;

@@ -25,6 +25,15 @@ static SNWishes* __shared;
     return __shared;
 }
 
+
+//
+-(void) sortWishesByDateUpadate
+{
+    NSSortDescriptor* sort = [NSSortDescriptor sortDescriptorWithKey:@"dateUpdate" ascending:NO];
+    [self.allWishes sortUsingDescriptors:@[sort]];
+}
+
+
 -(NSDictionary*) createDictionaryFromWish:(SNOneWish*)wish
 {
 
@@ -34,7 +43,7 @@ static SNWishes* __shared;
     if (!wish.dateCreate) wish.dateCreate=[NSDate new];
     if (!wish.dateUpdate) wish.dateUpdate = [NSDate new];
 //    if (!wish.repeatMode) wish.repeatMode=@"";
-    if (!wish.schedule) wish.schedule=[NSArray array];
+    if (!wish.schedule) wish.schedule=[NSMutableArray array];// [NSArray array];
     if (!wish.soundName) wish.soundName=@"";
     if (!wish.status) wish.status=@"";
     
@@ -87,17 +96,28 @@ static SNWishes* __shared;
     if (![[NSFileManager defaultManager] fileExistsAtPath:pathtoFileInLibrary])
     {
         //файла нет
-        //ну нет и нет
-    }
-    else
-    {
-        //файл есть!
-        NSArray* loadingArray = [NSArray arrayWithContentsOfFile:pathtoFileInLibrary];
-    
-        for (NSDictionary* item in loadingArray)
-        {
-            [self.allWishes addObject:[self createOneWishFromDictionary:item]];
+        //копируем из бандла
+        //если русский, - то русский если нет - то английский
+        NSString* pathToDefaultWishes;
+        NSLog(loc_str(@"LANG"));
+        if ([loc_str(@"LANG") isEqualToString:@"RUS"]) {
+            pathToDefaultWishes = [[NSBundle mainBundle] pathForResource:@"dataRUS.xml" ofType:nil];
+        } else {
+            NSLog(@"copyEng");
+            pathToDefaultWishes = [[NSBundle mainBundle] pathForResource:@"dataENG.xml" ofType:nil];
         }
+        
+
+        //NSLog(@"pathToDefaultWishes=%@",pathToDefaultWishes);
+        [[NSFileManager defaultManager] copyItemAtPath:pathToDefaultWishes toPath:pathtoFileInLibrary error:nil];
+    }
+    
+    //файл есть!
+    NSArray* loadingArray = [NSArray arrayWithContentsOfFile:pathtoFileInLibrary];
+    
+    for (NSDictionary* item in loadingArray)
+    {
+        [self.allWishes addObject:[self createOneWishFromDictionary:item]];
     }
 }
 
@@ -125,7 +145,7 @@ static SNWishes* __shared;
     wish.status = @"NO";
     wish.dateCreate = [NSDate new];
     wish.dateUpdate = [NSDate new];
-    wish.soundName = nil;
+    wish.soundName = @"нет";
     wish.schedule = [NSMutableArray new];
     
     NSArray* arr = @[wish];
@@ -161,6 +181,20 @@ static SNWishes* __shared;
     [self saveWishesToFile];
 }
 
+-(SNOneWish*)returnWishById:(NSNumber*)idW {
+    //из массива возвращаем
+    for (SNOneWish* wish in [self allWishes]) {
+        if ([wish.idWish isEqualToNumber:idW]) {
+            return wish;
+        }
+    }
+    return nil;
+}
 
+-(void) updateAllNotifications {
+    for (SNOneWish* wish in [self allWishes]) {
+        [wish updateLocalNotification];
+    }
+}
 
 @end

@@ -13,8 +13,12 @@
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *buttonAdd;
 - (IBAction)addWishAction:(id)sender;
 
 - (IBAction)showAll:(id)sender;
+
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *buttonFontSelect;
+- (IBAction)pushFontSelectAction:(id)sender;
 
 @end

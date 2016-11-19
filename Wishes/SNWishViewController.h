@@ -14,7 +14,9 @@
 
 @property SNOneWish* currentWish;
 
-@property (weak, nonatomic) IBOutlet UITextView *textView;
+@property (weak, nonatomic) IBOutlet UIToolbar *toolBar;
+
+@property (strong, nonatomic) IBOutlet UITextView *textView;
 
 - (IBAction)pushDeleteAction:(id)sender;
 

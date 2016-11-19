@@ -27,12 +27,22 @@
         notification.timeZone  = [NSTimeZone systemTimeZone];
     
         //notification.fireDate  = self.dateStart;
-        notification.fireDate  = curDate;
         
-        notification.alertAction = @"OK";
+
+        //обнулить секунды
+        NSDateFormatter * df = [NSDateFormatter new];
+        [df setDateFormat:@"dd.MM.yyyy HH:mm"];
+        NSString* str = [df stringFromDate:curDate];
+        
+        notification.fireDate  = [df dateFromString:str];
+        
+        
+        
+        
+        notification.alertAction = @"Wishes";
         notification.alertBody = self.title;
         
-        if ([self.soundName isEqualToString:@"Без звука"])
+        if ([self.soundName isEqualToString:@"нет"])
             notification.soundName = nil;
         else
             notification.soundName = self.soundName;//UILocalNotificationDefaultSoundName;
@@ -49,7 +59,7 @@
 //    }
     
         //выставили ID
-        NSDictionary *infoDict = [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%@", self.idWish],@"ID",nil];
+        NSDictionary *infoDict =@{@"ID": self.idWish, @"Title": self.title};
         notification.userInfo = infoDict;
     
         [app scheduleLocalNotification:notification];
@@ -65,7 +75,7 @@
     NSArray *oldNotifications         = [app scheduledLocalNotifications];
         
     for (UILocalNotification *aNotif in oldNotifications) {
-        if([[aNotif.userInfo objectForKey:@"ID"] isEqualToString:[self.idWish stringValue]]) {
+        if([[NSString stringWithFormat:@"%@",[aNotif.userInfo objectForKey:@"ID"]] isEqualToString:[self.idWish stringValue]]) {
             [app cancelLocalNotification:aNotif];
         }
     }

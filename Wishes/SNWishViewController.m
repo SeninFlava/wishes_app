@@ -10,6 +10,9 @@
 #import "SNSettingViewController.h"
 
 @interface SNWishViewController () <UIActionSheetDelegate>
+{
+    CGRect _textRect;
+}
 
 @end
 
@@ -37,25 +40,26 @@
     //изменяем рвзмеры текствью
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     
-    
-    
 }
 
 //метод вызывается, когда клава появилась
 -(void) keyboardDidShow:(NSNotification*)note
 {
+    //созраняем размеры текст вью
+    //_textRect =
+    
     //показываем кнопку готово
     [self.navigationItem setRightBarButtonItem:self.buttonReady animated:NO];
     
     //меняем размер текстВью чтобы клава не перекрывала его
     NSDictionary *userInfo = [note userInfo];
-    NSValue *aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
-    CGRect keyboardRect = [aValue CGRectValue];
-    keyboardRect = [self.view convertRect:keyboardRect fromView:nil];
-    CGFloat keyboardTop = keyboardRect.origin.y;
-    CGRect newTextViewFrame = self.view.bounds;
-    newTextViewFrame.size.height = keyboardTop - self.view.bounds.origin.y;
-    self.textView.frame = newTextViewFrame;
+    NSValue *bValue = [userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey];
+    CGRect keyboardRectBegin = [bValue CGRectValue];
+
+    CGRect textViewFrame = self.textView.frame;
+    textViewFrame.size.height = textViewFrame.size.height - keyboardRectBegin.size.height+self.toolBar.frame.size.height;
+    self.textView.frame = textViewFrame;
+    
 }
 
 //метод вызывается когда клава начинает убираться с экрана
@@ -64,10 +68,12 @@
     [self.navigationItem setRightBarButtonItem:nil];
     //если что-то написанно, то показываем настройки
     //if (self.textView.text.length>0)
-    [self.navigationItem setRightBarButtonItem:self.buttonSettings animated:NO];
+    //[self.navigationItem setRightBarButtonItem:self.buttonSettings animated:NO];
     
     //меняем размер текствью на первоначальный
-    self.textView.frame = self.view.bounds;
+    _textRect = self.view.bounds;// self.textView.frame;
+    _textRect.size.height = _textRect.size.height-44;
+    self.textView.frame = _textRect;//self.view.bounds;
     
 }
 
@@ -81,12 +87,35 @@
 //появляемся, выставляем текст вью и заголовок навигэшн итема
 -(void) viewWillAppear:(BOOL)animated
 {
+    //сохранили пожелание текущее дабы не открывать его дважды
+    [[NSUserDefaults standardUserDefaults] setObject:self.currentWish.idWish forKey:@"currentWish"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    
+    self.textView.font = [[SNFontManager sharedManager] getFont];
+    self.textView.textColor = [[SNFontManager sharedManager] getFontColor];
+    
+    
+    //self.textView.backgroundColor = [UIColor yellowColor];
+    
+    
     self.textView.text = self.currentWish.text;
     [self.navigationItem setTitle:self.currentWish.title];
+
     
-    //показываем кнопку настройки если введен какой-нибудь текст
-//    if (self.textView.text.length!=0)
-    [self.navigationItem setRightBarButtonItem:self.buttonSettings animated:NO];
+    //выставляем цвета
+    self.textView.backgroundColor = [[SNFontManager sharedManager] getBackGroundColor];
+    //цвет тулбара
+    [self.toolBar setBarTintColor:[[SNFontManager sharedManager] getBackGroundColor]];
+    [self.toolBar setTintColor:[[SNFontManager sharedManager] getTitleFontColor]];
+
+    //выставляем цвет заголовка
+    [self.navigationController.navigationBar setBarTintColor:[[SNFontManager sharedManager] getTitleColor]];
+    //цвет переключателя
+    [[UISwitch appearance] setOnTintColor:[[SNFontManager sharedManager] getTitleFontColor]];
+    //цвет букв в заголовке
+    [self.navigationController.navigationBar setTintColor:[[SNFontManager sharedManager] getTitleFontColor]];
+
 }
 
 
@@ -115,8 +144,16 @@
 //исчезаем, сохраняем
 -(void) viewWillDisappear:(BOOL)animated
 {
-    self.currentWish.title = [self trimTextToTitle];
-    self.currentWish.text = self.textView.text;
+    if (![self.currentWish.text isEqualToString:self.textView.text]) {
+        self.currentWish.title = [self trimTextToTitle];
+        self.currentWish.text = self.textView.text;
+        self.currentWish.dateUpdate = [NSDate new];
+    }
+
+    
+    if (self.textView.text.length==0)
+        [[SNWishes sharedWishes] deleteWish:self.currentWish];
+    
     [[SNWishes sharedWishes] saveWishesToFile];
 }
 
@@ -140,7 +177,7 @@
 //нажали удалить
 - (IBAction)pushDeleteAction:(id)sender {
     
-    UIActionSheet *action = [[UIActionSheet alloc] initWithTitle:@"Удалить пожелание?" delegate:self cancelButtonTitle:@"Отмена" destructiveButtonTitle:nil otherButtonTitles:@"Удалить", nil];
+    UIActionSheet *action = [[UIActionSheet alloc] initWithTitle:loc_str(@"Detele wish?") delegate:self cancelButtonTitle:loc_str(@"Cancel") destructiveButtonTitle:nil otherButtonTitles:loc_str(@"Delete"), nil];
     [action showInView:self.view];
 }
 
@@ -163,7 +200,7 @@
         [self performSegueWithIdentifier:@"goToSettingOneWish" sender:self];
     else
     {
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Введите пожелание" message:nil delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:loc_str(@"Enter text wish") message:nil delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alert show];
     }
 }

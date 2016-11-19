@@ -38,6 +38,20 @@
 
 -(void) viewWillAppear:(BOOL)animated
 {
+    //выставляем цвет фона
+    UIColor* color = [[SNFontManager sharedManager] getBackGroundColor];
+    UIView* view = [UIView new];
+    [view setBackgroundColor:color];
+    [self.tableView setBackgroundView:view];
+
+    //выставляем цвет заголовка
+    [self.navigationController.navigationBar setBarTintColor:[[SNFontManager sharedManager] getTitleColor]];
+    //цвет переключателя
+    [[UISwitch appearance] setOnTintColor:[[SNFontManager sharedManager] getTitleFontColor]];
+    //цвет букв в заголовке
+    [self.navigationController.navigationBar setTintColor:[[SNFontManager sharedManager] getTitleFontColor]];
+    
+    
     [self.tableView reloadData];
 }
 
@@ -60,7 +74,7 @@
 {
     if (section==0)
     {
-        return [NSString stringWithFormat:@"Настройка напоминаний для пожелания \"%@\"",self.oneWish.title];
+        return [NSString stringWithFormat:loc_str(@"Set up reminders for wish \"%@\""),self.oneWish.title];
     }
     return @"";
 }
@@ -79,6 +93,7 @@
     if (indexPath.row==0)
     {
         SNSettingCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellSwitch" forIndexPath:indexPath];
+        
         cell.oneWish = self.oneWish;
         if ([cell.oneWish.status isEqualToString:@"YES"])
             cell.switchInSettingsCell.on = YES;
@@ -87,6 +102,7 @@
         
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone ];
         
+        [self setFontCell:cell];
         return cell;
     }
     //расписание
@@ -95,9 +111,10 @@
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
         [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
         
-        cell.textLabel.text = @"Расписание:";
+        cell.textLabel.text = loc_str(@"Schedule:");
         cell.detailTextLabel.text=[NSString stringWithFormat:@"%i",self.oneWish.schedule.count];
         
+        [self setFontCell:cell];
         return cell;
     }
     //звук
@@ -106,53 +123,16 @@
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
         [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
         
-        cell.textLabel.text = @"Звук напоминания:";
+        cell.textLabel.text = loc_str(@"Sound reminder:");
         cell.detailTextLabel.text = self.oneWish.soundName;
         
+        [self setFontCell:cell];
         return cell;
     }
-
+    
+    [self setFontCell:cell];
     return cell;
 }
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 #pragma mark - Table view delegate
 
@@ -183,6 +163,19 @@
     {
         [segue.destinationViewController setCurrentWish:self.oneWish];
     }
+}
+
+
+-(void) setFontCell:(UITableViewCell*) cell {
+    //выставляем цвет фона
+    UIColor* colorBack = [[SNFontManager sharedManager] getBackGroundColor];
+    UIView* view = [UIView new];
+    [view setBackgroundColor:colorBack];
+    
+    cell.textLabel.backgroundColor = [[SNFontManager sharedManager] getBackGroundColor];
+    cell.detailTextLabel.backgroundColor = [[SNFontManager sharedManager] getBackGroundColor];
+    
+    [cell setBackgroundView:view];
 }
 
 @end
